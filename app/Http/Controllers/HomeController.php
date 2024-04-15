@@ -50,7 +50,7 @@ class HomeController extends Controller
         }
 
         $documents = Document::all();
-        $posts     = Post::all();
+        $posts     = Post::latest()->get();
 
         return view('index', compact('users', 'documents', 'orderedUsers', 'posts'));
     }
