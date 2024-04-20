@@ -485,9 +485,10 @@
               DPM dapat senantiasa melangkah bersama untuk memajukan DPM dan Universitas Udayana
             </p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="https://x.com/DPM_UDAYANA?t=x2LoeT2FioMzMCFgSfd6MA&s=09" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="https://www.facebook.com/groups/294377733976150/?ref=share&mibextid=CTbP7E" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="https://www.instagram.com/dpm_udayana?igsh=MW1lY2plY2ViZ241aQ==" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=zrm9408t" class="line"><i class="bx bi-line"></i></a>
             </div>
           </div>
 
