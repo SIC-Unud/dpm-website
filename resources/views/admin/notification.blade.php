@@ -1,89 +1,96 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container-fluid">
-        <div class="row">
+<div class="container-fluid">
+    <div class="row">
 
-            <div class="col-12">
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div
-                        class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
-                        <button class="btn btn-primary" data-toggle="modal" data-target="#notificationForm" id="BtnCreate" data-service="create">Add Notification</button>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        @if($notifications)
-                            <div class="list-group">
-                                @foreach($notifications as $notification)
-                                    <div class="list-group-item list-group-item-action flex-column align-items-start">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">{{ $notification->title }}</h5>
-                                            <div class="d-flex">
-                                                @if($notification->file_path)
-                                                    <a href="{{$notification->file}}" class="btn btn-primary mr-3" target="_blank">Download Notification File</a>
-                                                @endif
-                                                <button class="btn btn-primary button-edit mr-3" data-id="{{ $notification->id }}" data-service="edit" data-toggle="modal" data-target="#notificationForm">Edit</button>
-                                                <button class="btn-delete btn btn-danger" data-id="{{ $notification->id }}">Delete</button>
-                                            </div>
-                                        </div>
-                                        <p class="mb-1">{{ $notification->description }}</p>
-                                    </div>
-                                @endforeach
+        <div class="col-12">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Notifications</h6>
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#notificationForm" id="BtnCreate"
+                        data-service="create">Add Notification</button>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    @if($notifications)
+                    <div class="list-group">
+                        @foreach($notifications as $notification)
+                        <div class="list-group-item list-group-item-action flex-column align-items-start">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{ $notification->title }}</h5>
+                                <div class="d-flex">
+                                    @if($notification->file_path)
+                                    <a href="{{$notification->file}}" class="btn btn-primary mr-3"
+                                        target="_blank">Download Notification File</a>
+                                    @endif
+                                    <button class="btn btn-primary button-edit mr-3" data-id="{{ $notification->id }}"
+                                        data-service="edit" data-toggle="modal"
+                                        data-target="#notificationForm">Edit</button>
+                                    <button class="btn-delete btn btn-danger"
+                                        data-id="{{ $notification->id }}">Delete</button>
+                                </div>
                             </div>
-                        @endif
+                            <p class="mb-1">{{ $notification->description }}</p>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12">
+            <div class="modal" tabindex="-1" role="dialog" id="notificationForm" data-form="#formData">
+                <div class="modal-dialog" role="notification">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Notification</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form method="POST" id="formData">
+                            <input type="hidden" name="user_id" value="{{Auth::user()->id}}">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="title">Title : </label>
+                                    <input type="text" name="title" id="titlte" class="form-control"
+                                        placeholder="input Title ..." value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="description">Description : </label>
+                                    <textarea name="description" id="description" class="form-control" rows="5"
+                                        placeholder="input Description ..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="post_limit">Post Limit : </label>
+                                    <input type="text" name="post_limit" id="post_limit"
+                                        class="form-control date-picker" placeholder="input Post Limit ...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="file_path">File : </label>
+                                    <input type="file" name="file_path" id="file_path" class="form-control-file">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" id="BtnSubmit">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
-            <div class="col-12">
-                <div class="modal" tabindex="-1" role="dialog" id="notificationForm" data-form="#formData">
-                  <div class="modal-dialog" role="notification">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Notification</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <form method="POST" id="formData">
-                      	<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="title">Title : </label>
-                                <input type="text" name="title" id="titlte" class="form-control" placeholder="input Title ..." value="">
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Description : </label>
-                                <textarea name="description" id="description" class="form-control" rows="5" placeholder="input Description ..."></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="post_limit">Post Limit : </label>
-                                <input type="text" name="post_limit" id="post_limit" class="form-control date-picker" placeholder="input Post Limit ...">
-                            </div>
-                            <div class="form-group">
-                                <label for="file_path">File : </label>
-                                <input type="file" name="file_path" id="file_path" class="form-control-file">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="BtnSubmit">Save changes</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-            </div>  
-
         </div>
+
     </div>
+</div>
 @endsection
 
 @section('scripts')
-    <script type="text/javascript">
-        $('.date-picker').datepicker({
+<script type="text/javascript">
+    $('.date-picker').datepicker({
             dateFormat: "yy-mm-dd",
             changeYear: true,
             changeMonth: true,
@@ -162,6 +169,8 @@
                 error: function(data){
                     $(".error-message").remove();
                     var errors = data.responseJSON.errors;
+                    console.log(data);
+                    console.log(errors);
                     var element = '<div class="error-message alert alert-danger m-2" role="alert">';
                     for(const error in errors){
                         element += '<li>' + errors[error] + '</li>';
@@ -188,5 +197,5 @@
                 }
             });
         });
-    </script>
+</script>
 @endsection
