@@ -431,7 +431,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form class="php-email-form" id="formData">
+            <form method="POST" class="php-email-form" id="formData">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="nama" class="form-label">Nama</label>
@@ -444,7 +444,7 @@
               </div>
               <div class="row">
                 <div class="form-group col-md-6">
-                  <label for="angkatan" class="form-label">Angkatan</label>
+                  <label for="angkatan" class="form-label">Angkatan (Tahun)</label>
                   <input type="text" class="form-control" id="angkatan" name="generation" required/>
                 </div>
                 <div class="form-group col-md-6">
@@ -529,6 +529,15 @@
           var form = $("#formData");
           var data = new FormData(form[0]);
           console.log(data);
+
+          var recaptchaResponse = grecaptcha.getResponse();
+          if(recaptchaResponse) {
+              data.append('g-recaptcha-response', recaptchaResponse);
+          } else {
+              alert("Please verify that you are not a robot.");
+              return; 
+          }
+
           var url  = "{{route('submission.store')}}";
           data.set('_method', 'POST');
 
@@ -539,13 +548,19 @@
               cache: false,
               contentType:false,
               processData: false,
-              success: function(data){;
+              success: function(data){
                   swal({
                       title: "Success!",
                       text: data.message,
                       icon: "success",
                       value: true
                   });
+
+                  form.trigger("reset");
+
+                  if (typeof grecaptcha !== 'undefined') {
+                      grecaptcha.reset();
+                  }
               },
               error: function(data){
                   var errors = data.responseJSON.errors;
