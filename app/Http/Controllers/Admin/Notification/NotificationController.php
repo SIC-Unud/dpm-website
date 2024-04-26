@@ -37,10 +37,10 @@ class NotificationController extends Controller
         $notification->user_id = $request->user_id;
         $notification->post_limit = $request->post_limit;
 
-        if ($request->hasFile('file_path')) {
-            $filename = Str::slug($request->title) . '_' . date('Y-m-d') . '.' . $request->file('file_path')->extension();
-            $file_path = $request->file('file_path')->storeAs(Notification::FILE_PATH, $filename);
-            $notification->file_path = $file_path;
+        if ($request->hasFile('file_name')) {
+            $filename = Str::slug($request->title) . '_' . date('Y-m-d') . '.' . $request->file('file_name')->extension();
+            $request->file('file_name')->storeAs(Notification::FILE_PATH, $filename);
+            $notification->file_name = $filename;
         }
 
         $notification->save();
@@ -50,8 +50,8 @@ class NotificationController extends Controller
 
     public function destroy(Notification $notification)
     {
-        if ($notification->file_path)
-            Storage::delete($notification->file_path);
+        if ($notification->file_name)
+            Storage::delete($notification->file_name);
 
         $notification->delete();
 
@@ -65,12 +65,12 @@ class NotificationController extends Controller
         $notification->user_id     = $request->user_id;
         $notification->post_limit  = $request->post_limit;
 
-        if ($request->file('file_path')) {
-            if ($notification->file_path)
-                Storage::delete($notification->file_path);
+        if ($request->file('file_name')) {
+            if ($notification->file_name)
+                Storage::delete($notification->file_name);
 
-            $file_path = $request->file('file_path')->store(Notification::FILE_PATH);
-            $notification->file_path = $file_path;
+            $file_path = $request->file('file_name')->store(Notification::FILE_PATH);
+            $notification->file_name = $file_path;
         }
 
         $notification->save();
