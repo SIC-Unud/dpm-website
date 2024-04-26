@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        @endif
+        {{-- @endif --}}
         @endforeach
     </div>
 </div>
@@ -37,19 +37,21 @@
 <script>
     let notifications;
 
-    let cardDescs = $(".card-desc");
+    const triggerTruncateCardDesc = () => {
+        let cardDescs = $(".card-desc");
+        
+        cardDescs.each(function() {
+            var text = $(this).text();
     
-    cardDescs.each(function() {
-        var text = $(this).text();
+            var truncatedText = truncateText(text, 10);
+    
+            $(this).text(truncatedText);
+    
+            $(this).data('full-text', text);
+        })
+    }
 
-        var truncatedText = truncateText(text, 10);
-
-        console.log(truncatedText);
-
-        $(this).text(truncatedText);
-
-        $(this).data('full-text', text);
-    })
+    triggerTruncateCardDesc();
 
     // Function to truncate text to specified word limit
     function truncateText(text, limit) {
@@ -60,10 +62,32 @@
         return text; // Return the full text if it's within the limit
     }
 
-    $(".show-more-btn").click(function() {
+    // $(".show-more-btn").click(function() {
+    //     console.log('terklik');
+    //     if ($(this).data("is-expand") === false) {
+    //         cardDesc = $(this).siblings(".card-desc");
+    //         fullText = cardDesc.data("full-text");
+    //         console.log(fullText);
+    
+    //         cardDesc.text(fullText);
+    //         $(this).text("Show less");
+    //         $(this).data("is-expand", true);
+    //     } else {
+    //         cardDesc = $(this).siblings(".card-desc");
+    //         fullText = cardDesc.data("full-text");
+    //         truncatedText = truncateText(fullText, 10);
+
+    //         cardDesc.text(truncatedText);
+    //         $(this).text("Show more");
+    //         $(this).data("is-expand", false);
+    //     }
+    // })
+
+    $(document).on("click", ".show-more-btn", function(){
         if ($(this).data("is-expand") === false) {
             cardDesc = $(this).siblings(".card-desc");
             fullText = cardDesc.data("full-text");
+            console.log(fullText);
     
             cardDesc.text(fullText);
             $(this).text("Show less");
@@ -77,7 +101,7 @@
             $(this).text("Show more");
             $(this).data("is-expand", false);
         }
-    })
+    });
 
     $("#order").change(function(e) {
         e.preventDefault();
@@ -118,22 +142,35 @@
         var element = "";
 
         notifications.map((notif) => {
-            element += `
-            <div class="w-100 h-100 p-1">
-                <div class="card shadow py-2">
-                    <div class="card-body">
-                        <h3>${notif.title}</h3>
-                        <p>${notif.description}</p>
-            `;
+            // Check if post limit date is before current date
+            let postLimit = new Date(notif.post_limit);
+            let currDate = new Date();
+            postLimit.setHours(0,0,0,0);
+            currDate.setHours(0,0,0,0);
+            if (postLimit.getTime() >= currDate.getTime()) {
+                element += `
+                <div class="w-100 h-100 p-1">
+                    <div class="card shadow py-2">
+                        <div class="card-body">
+                            <h3>${notif.title}</h3>
+                            <p class="card-desc">${notif.description}</p>
+                `;
 
-            if (notif.file_path && notif.file_path.length > 0) {
-                element += `<a href="${notif.file_path}" class="btn btn-primary">Download Notification File</a>`;
+                if (notif.description.split(' ').length > 10) {
+                    element += `<button type="button" class="btn btn-link show-more-btn" data-is-expand=false>Show more</button>`
+                }
+    
+                if (notif.file_path && notif.file_path.length > 0) {
+                    element += `<a href="${notif.file_path}" class="btn btn-primary">Download Notification File</a>`;
+                }
+    
+                element += "</div></div></div>";
             }
-
-            element += "</div></div></div>";
         })
 
         notifWrapper.append(element);
+
+        triggerTruncateCardDesc();
     }
 </script>
 @endsection
