@@ -17,11 +17,11 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('description');
-            $table->string('file_path')->nullable();
+            $table->string('file_name')->nullable();
             $table->date('post_limit');
             $table->foreignId('user_id')
-                  ->constrained()
-                  ->cascadeOnDelete();
+                ->constrained()
+                ->cascadeOnDelete();
             $table->timestamps();
         });
     }

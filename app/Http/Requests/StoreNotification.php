@@ -26,7 +26,7 @@ class StoreNotification extends FormRequest
     {
         return [
             'title'       => 'required|min:1|max:100',
-            'description' => 'required|min:1|max:1000',
+            'description' => 'required|min:1|max:255',
             'file_path'   => 'nullable|max:10000'
         ];
     }
