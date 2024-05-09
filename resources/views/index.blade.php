@@ -196,7 +196,8 @@
               <ul>
                 <li>
                   <a data-bs-toggle="collapse" class="collapse" data-bs-target="#accordion-list-1"><span>Visi</span><i
-                      class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                      class="fa-solid fa-chevron-down icon-show"></i><i
+                      class="fa-solid fa-chevron-up icon-close"></i></a>
                   <div id="accordion-list-1" class="collapse show" data-bs-parent=".accordion-list">
                     <p>
                       Langkah Bersama wujudkan DPM
@@ -210,7 +211,8 @@
 
                 <li>
                   <a data-bs-toggle="collapse" data-bs-target="#accordion-list-2" class="collapsed"><span>Misi</span><i
-                      class="bx bx-chevron-down icon-show"></i><i class="bx bx-chevron-up icon-close"></i></a>
+                      class="fa-solid fa-chevron-down icon-show"></i><i
+                      class="fa-solid fa-chevron-up icon-close"></i></a>
                   <div id="accordion-list-2" class="collapse" data-bs-parent=".accordion-list">
                     <ul class="visi-misi-list visi">
                       <li class="">Menjalankan tugas dan fungsi DPM sesuai dengan GBHO,
@@ -524,14 +526,18 @@
               DPM dapat senantiasa melangkah bersama untuk memajukan DPM dan Universitas Udayana
             </p>
             <div class="social-links mt-3">
-              <a href="https://x.com/DPM_UDAYANA?t=x2LoeT2FioMzMCFgSfd6MA&s=09" class="twitter"><i
-                  class="bx bxl-twitter"></i></a>
-              <a href="https://www.facebook.com/groups/294377733976150/?ref=share&mibextid=CTbP7E" class="facebook"><i
-                  class="bx bxl-facebook"></i></a>
-              <a href="https://www.instagram.com/dpm_udayana?igsh=MW1lY2plY2ViZ241aQ==" class="instagram"><i
-                  class="bx bxl-instagram"></i></a>
-              <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=zrm9408t" class="line"><i
-                  class="bx bi-line"></i></a>
+              <a href="https://x.com/DPM_UDAYANA?t=x2LoeT2FioMzMCFgSfd6MA&s=09" class="twitter">
+                <i class="fa-brands fa-x-twitter"></i>
+              </a>
+              <a href="https://www.facebook.com/groups/294377733976150/?ref=share&mibextid=CTbP7E" class="facebook">
+                <i class="fa-brands fa-facebook"></i>
+              </a>
+              <a href="https://www.instagram.com/dpm_udayana?igsh=MW1lY2plY2ViZ241aQ==" class="instagram">
+                <i class="fa-brands fa-instagram"></i>
+              </a>
+              <a href="https://liff.line.me/1645278921-kWRPP32q/?accountId=zrm9408t" class="line">
+                <i class="fa-brands fa-line"></i>
+              </a>
             </div>
           </div>
 
