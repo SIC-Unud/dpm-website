@@ -1066,6 +1066,22 @@ section {
   margin-top: 10px;
 }
 
+.works .grid-cols-3 {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+.works .grid-cols-3>* {
+  text-align: center;
+}
+
+.works .grid-cols-3 img {
+  max-height: 200px;
+  object-fit: cover;
+}
+
+
 @media (max-width: 1000) {
   .carousel-caption img {
     height: 150px;
@@ -1089,6 +1105,8 @@ section {
     display: inline-block;
   }
 }
+
+
 
 @media (min-width: 942px) {
   .carousel-caption img {

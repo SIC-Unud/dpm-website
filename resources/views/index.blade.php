@@ -10,7 +10,7 @@
           data-aos-delay="200">
           <h1>Dewan Perwakilan Mahasiswa (DPM)</h1>
           <h1>Pemerintahan Mahasiswa</h1>
-          <h1>Universitas Udayana 2022</h1>
+          <h1>Universitas Udayana 2024</h1>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="#about" class="btn-get-started scrollto">Scroll Down</a>
           </div>
@@ -27,7 +27,6 @@
   </section><!-- End Hero -->
 
   <main id="main">
-
 
     <!-- ======= About Us Section ======= -->
     <section id="about" class="about">
@@ -256,22 +255,22 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
-              <i class="bi bi-emoji-smile"></i>
+              <i class="bi bi-journal-richtext" style="color: #ee6c20;"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="109" data-purecounter-duration="5"
-                  class="purecounter"></span>
-                <p>Staff</p>
+                <span data-purecounter-start="0" data-purecounter-end="{{ $dewanCount }}"
+                  data-purecounter-duration="1" class="purecounter"></span>
+                <p>Dewan</p>
               </div>
             </div>
           </div>
 
           <div class="col-lg-3 col-md-6">
             <div class="count-box">
-              <i class="bi bi-journal-richtext" style="color: #ee6c20;"></i>
+              <i class="bi bi-emoji-smile"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="5"
-                  class="purecounter"></span>
-                <p>Dewan</p>
+                <span data-purecounter-start="0" data-purecounter-end="{{ $staffCount }}"
+                  data-purecounter-duration="1" class="purecounter"></span>
+                <p>Staff</p>
               </div>
             </div>
           </div>
@@ -280,7 +279,7 @@
             <div class="count-box">
               <i class="bi bi-people" style="color: #bb0852;"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="45" data-purecounter-duration="5"
+                <span data-purecounter-start="0" data-purecounter-end="11" data-purecounter-duration="1"
                   class="purecounter"></span>
                 <p>Divisi</p>
               </div>
@@ -295,7 +294,6 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-10 fungsio-tabs mx-auto text-center">
-
               <ul class="nav nav-tabs justify-content-center " id="mytab">
                 <li class="nav-item">
                   <a href="#pimpinan" class="nav-link " data-bs-toggle="tab">PIMPINAN</a>
@@ -319,22 +317,29 @@
                   <a href="#komisi-V" class="nav-link" data-bs-toggle="tab">KOMISI V</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#divisi-kestari" class="nav-link" data-bs-toggle="tab">DIVISI KESTARI</a>
+                  <a href="#staf-ahli-litbang" class="nav-link" data-bs-toggle="tab">STAF AHLI LITBANG</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#divisi-medinfo" class="nav-link" data-bs-toggle="tab">DIVISI MEDINFO</a>
+                  <a href="#staf-ahli-kestari" class="nav-link" data-bs-toggle="tab">STAF AHLI KESTARI</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#divisi-psdm" class="nav-link" data-bs-toggle="tab">DIVISI PSDM</a>
+                  <a href="#staf-ahli-administrasi-umum" class="nav-link" data-bs-toggle="tab">STAF AHLI ADMINISTRASI
+                    UMUM</a>
                 </li>
                 <li class="nav-item">
-                  <a href="#divisi-litbang" class="nav-link" data-bs-toggle="tab">DIVISI LITBANG</a>
+                  <a href="#staf-ahli-internalisasi-hubungan-antar-anggota" class="nav-link" data-bs-toggle="tab">STAF
+                    AHLI INTERNALISASI
+                    HUBUNGAN ANTAR ANGGOTA</a>
+                </li>
+                <li class="nav-item">
+                  <a href="#staf-ahli-komunikasi-visual" class="nav-link" data-bs-toggle="tab">STAF AHLI KOMUNIKASI
+                    VISUAL</a>
                 </li>
               </ul>
             </div>
           </div>
           <div class="tab-content">
-            @foreach (['pimpinan', 'inti', 'komisi-I', 'komisi-II', 'komisi-III', 'komisi-IV', 'komisi-V', 'divisi-kestari', 'divisi-medinfo', 'divisi-psdm', 'divisi-litbang'] as $section)
+            @foreach (['pimpinan', 'inti', 'komisi-I', 'komisi-II', 'komisi-III', 'komisi-IV', 'komisi-V', 'staf-ahli-litbang', 'staf-ahli-kestari', 'staf-ahli-administrasi-umum', 'staf-ahli-internalisasi-hubungan-antar-anggota', 'staf-ahli-komunikasi-visual'] as $section)
               <div class="tab-pane fade show {{ !$loop->index ? 'active' : null }}" id="{{ $section }}">
                 <div class="row justify-content-md-center d-flex align-items-center" data-aos="fade-up"
                   data-aos-delay="200">
@@ -348,11 +353,11 @@
                             <h4 class="pt-2"><a href="{{ route('user.show', $user->id) }}">{{ $user->name }}</a>
                             </h4>
                             <h5>{{ $user->detail->role->role }}</h5>
-                            <ul class="social-icons d-flex justify-content-center">
+                            {{-- <ul class="social-icons d-flex justify-content-center">
                               <li> <a href="https://wa.me/{{ $user->contact->phone }}"><span
                                     class="fa fa-whatsapp"></span></a></li>
                               <li> <a href="https://instagram.com/{{ $user->contact->instagram }}"><span
-                                    class="fa fa-instagram"></span></a></li>
+                                    class="fa fa-instagram"></span></a></li> --}}
                             </ul>
                           </div>
                         </div>
@@ -414,6 +419,83 @@
       </div>
     </section><!-- End Cta Section -->
 
+    <section id="works" class="works">
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>PROGRAM KERJA DPM UNUD</h2>
+        </div>
+        <div class="row">
+          <div class="col-lg-10 mx-auto text-center">
+            <ul class="nav nav-tabs justify-content-center mb-4" id="prokertab">
+              <li class="nav-item">
+                <a href="#proker-wajib" class="nav-link " data-bs-toggle="tab">PROKER WAJIB</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-inti" class="nav-link" data-bs-toggle="tab">INTI</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-komisi-I" class="nav-link" data-bs-toggle="tab">KOMISI I</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-komisi-II" class="nav-link" data-bs-toggle="tab">KOMISI II</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-komisi-III" class="nav-link" data-bs-toggle="tab">KOMISI III</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-komisi-IV" class="nav-link" data-bs-toggle="tab">KOMISI IV</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-komisi-V" class="nav-link" data-bs-toggle="tab">KOMISI V</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-staf-ahli-litbang" class="nav-link" data-bs-toggle="tab">STAF AHLI LITBANG</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-staf-ahli-kestari" class="nav-link" data-bs-toggle="tab">STAF AHLI KESTARI</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-staf-ahli-administrasi-umum" class="nav-link" data-bs-toggle="tab">STAF AHLI
+                  ADMINISTRASI
+                  UMUM</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-staf-ahli-internalisasi-hubungan-antar-anggota" class="nav-link"
+                  data-bs-toggle="tab">STAF
+                  AHLI INTERNALISASI
+                  HUBUNGAN ANTAR ANGGOTA</a>
+              </li>
+              <li class="nav-item">
+                <a href="#proker-staf-ahli-komunikasi-visual" class="nav-link" data-bs-toggle="tab">STAF AHLI
+                  KOMUNIKASI
+                  VISUAL</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="tab-content">
+          @foreach (['proker-wajib', 'proker-inti', 'proker-komisi-I', 'proker-komisi-II', 'proker-komisi-III', 'proker-komisi-IV', 'proker-komisi-V', 'proker-staf-ahli-litbang', 'proker-staf-ahli-kestari', 'proker-staf-ahli-administrasi-umum', 'proker-staf-ahli-internalisasi-hubungan-antar-anggota', 'proker-staf-ahli-komunikasi-visual'] as $prokerType)
+            <div class="tab-pane fade show {{ !$loop->index ? 'active' : null }}" id="{{ $prokerType }}">
+              @if ($orderedWorks[$loop->index])
+                <div class="grid-cols-3">
+                  @foreach ($orderedWorks[$loop->index] as $work)
+                    <div class="card border-light mb-3">
+                      <img src="/storage/images/works/{{ $work->image_name }}" class="card-img-top" alt="proker">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ $work->title }}</h5>
+                        <p class="card-text">
+                          {{ $work->description }}
+                        </p>
+                      </div>
+                    </div>
+                  @endforeach
+                </div>
+              @endif
+            </div>
+          @endforeach
+        </div>
+      </div>
+    </section>
 
     <!--========================START INFORMASI AREA=====================-->
     <section id="recent-postingan" class="recent-postingan p-2 m-2">

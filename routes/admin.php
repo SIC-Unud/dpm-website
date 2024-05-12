@@ -16,8 +16,7 @@ use App\Http\Controllers\Admin\Document\DocumentController;
 use App\Http\Controllers\Admin\Notification\NotificationController;
 use App\Http\Controllers\Admin\Submission\SubmissionController;
 use App\Http\Controllers\Admin\Post\PostController;
-
-
+use App\Http\Controllers\Admin\Work\WorkController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,5 +127,12 @@ Route::group(['middleware' => ['auth']], function () {
         Route::post('/', [PostController::class, 'store'])->name('store');
         Route::put('/{post}', [PostController::class, 'update'])->name('update');
         Route::delete('/{post}', [PostController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::group(['prefix' => 'work', 'as' => 'work.'], function () {
+        Route::get('/', [WorkController::class, 'index'])->name('index');
+        Route::post('/', [WorkController::class, 'store'])->name('store');
+        Route::put('/{work}', [WorkController::class, 'update'])->name('update');
+        Route::delete('/{work}', [WorkController::class, 'destroy'])->name('destroy');
     });
 });
