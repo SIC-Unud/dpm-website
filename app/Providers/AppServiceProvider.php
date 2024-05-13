@@ -4,7 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
-use Validator;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        if (config('app.env') == 'production') {
+            URL::forceScheme('https');
+        }
         Paginator::useBootstrap();
         Validator::extend('recaptcha', 'App\Rules\ReCaptcha@passes');
     }
